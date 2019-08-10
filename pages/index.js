@@ -25,7 +25,7 @@ const Blog = ({ router, page = 1 }) => {
   const results = _range(fromResult - 1, toResult)
 
   return (
-    <Layout pageTitle='Blog' path={router.pathname}>
+    <Layout path={router.pathname}>
       {blogposts
         .filter((_post, index) => results.indexOf(index) > -1)
         .map((post, index) => (
