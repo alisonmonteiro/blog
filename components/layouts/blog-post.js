@@ -6,7 +6,7 @@ import PublishedAt from '../utils/published-at'
 import blogposts from '../../posts/index'
 import NextPrevPost from '../next-prev-post'
 
-function BlogPost ({ path, meta, children }) {
+function BlogPost ({ path, meta, children, language }) {
   const currentPostIndex = blogposts
     .map(({ title }) => title)
     .indexOf(meta.title)
@@ -20,19 +20,9 @@ function BlogPost ({ path, meta, children }) {
         <header>
           <h1 className='p-name'>{meta.title}</h1>
 
-          <div>
+          <div className="info">
+            <div className="Language">{language === 'en' ? '🇬🇧' : '🇧🇷'}</div>
             <PublishedAt date={meta.publishedAt} link={path} />
-
-            <Link href='/about'>
-              <a
-                color='#aaa'
-                rel='author'
-                className='p-author h-card'
-                href='/about'
-              >
-                {siteMeta.author}
-              </a>
-            </Link>
           </div>
         </header>
         <div className='e-content'>{children}</div>
@@ -68,6 +58,26 @@ function BlogPost ({ path, meta, children }) {
 
         article {
           margin-bottom: 2em;
+        }
+
+        h1 {
+          font-size: 28px;
+          margin-bottom: .7rem;
+          line-height: 1.4em;
+          font-family: 'Libre Caslon Text', serif;
+          font-weight: 400;
+        }
+
+        .info {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        }
+
+        .Language {
+          font-size: 11px;
+          color: #808080;
+          margin: 2px 8px 0 0;
         }
 
         footer {

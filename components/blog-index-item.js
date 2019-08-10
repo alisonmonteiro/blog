@@ -30,7 +30,6 @@ const Post = ({ title, summary, date, path, language }) => (
       }
 
       .Language {
-        text-transform: uppercase;
         font-size: 11px;
         color: #808080;
         margin: 2px 8px 0 0;
