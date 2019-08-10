@@ -17,6 +17,7 @@ function PublishedAt (props) {
         a {
           color: #555;
           text-decoration: none;
+          font-size: .7em;
         }
       `}</style>
     </>

@@ -25,6 +25,8 @@ function Header ({ path, pageTitle, ogImage }) {
       </style>
       <style jsx global>
         {`
+          @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text|Open+Sans:300,400,700&display=swap');
+          
           html {
             margin: 0;
             box-sizing: border-box;

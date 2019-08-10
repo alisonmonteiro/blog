@@ -2,6 +2,9 @@ import Link from 'next/link'
 
 const Nav = () => (
   <nav>
+    <Link href='/'>
+      <a>Home</a>
+    </Link>
     <Link href='/about'>
       <a>About</a>
     </Link>
@@ -10,8 +13,20 @@ const Nav = () => (
         display: flex;
       }
 
-      a:not(:last-child) {
-        margin-right: 1em;
+      nav a {
+        text-decoration: underline;
+        font-size: 1rem;
+        margin-right: 15px;
+        transition: all .2s;
+        color: #0079FF;
+      }
+
+      nav a:last-child {
+        margin-right: 0;
+      }
+
+      nav a:hover {
+        color: #000;
       }
     `}</style>
   </nav>

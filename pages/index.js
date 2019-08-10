@@ -26,10 +26,6 @@ const Blog = ({ router, page = 1 }) => {
 
   return (
     <Layout pageTitle='Blog' path={router.pathname}>
-      <header>
-        <h1>Blog</h1>
-      </header>
-
       {blogposts
         .filter((_post, index) => results.indexOf(index) > -1)
         .map((post, index) => (

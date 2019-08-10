@@ -1,9 +1,10 @@
 import { withRouter } from 'next/router'
 import BlogPost from '../components/layouts/blog-post'
 import Page from '../components/layouts/page'
+import { siteMeta } from '../blog.config'
 
 export const meta = {
-  title: 'About',
+  title: 'Hi there — I’m Alison Monteiro',
   summary:
     'Hi! This is a placeholder page. I thought that the header was too empty so I wanted to add an element to show how to add additional pages and put a small navigation here.',
 }
@@ -14,8 +15,14 @@ export default withRouter(({ children, router }) => (
   </Page>
 ))
 
-Hi! This is a placeholder page.
+<img width='140' src='/static/profile.png' alt={siteMeta.author} />
 
-I thought that the header was too empty, so I added an element to show how to add additional pages and put a small navigation there.
+A 23yo self-motivated Software Developer based in Fortaleza, Brazil. 🏖
 
-You can create pages using React components or MDX files. [Read more about MDX](https://mdxjs.com/).
+I like creating things for the web.
+
+Currently I’m working remotely as Software Developer 
+at Bookers, a Rio de Janeiro-based tour operator initiative.
+
+If you need to get in touch or learn more about what I do, find me on:
+

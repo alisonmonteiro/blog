@@ -17,6 +17,7 @@ const Title = ({ path }) => (
     <style jsx>{`
       h1 {
         margin-top: 0;
+        font-size: 1.5rem;
       }
 
       a {
@@ -25,8 +26,9 @@ const Title = ({ path }) => (
       }
 
       p {
-        font-size: 1.3em;
+        font-size: 1.3rem;
         font-weight: bold;
+        margin: 0;
       }
     `}</style>
   </>
