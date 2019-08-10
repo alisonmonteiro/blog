@@ -61,11 +61,11 @@ function BlogPost ({ path, meta, children, language }) {
         }
 
         h1 {
-          font-size: 28px;
+          font-size: 2.5rem;
           margin-bottom: .7rem;
           line-height: 1.4em;
           font-family: 'Libre Caslon Text', serif;
-          font-weight: 400;
+          font-weight: 700;
         }
 
         .info {

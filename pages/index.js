@@ -35,6 +35,7 @@ const Blog = ({ router, page = 1 }) => {
             summary={post.summary}
             date={post.publishedAt}
             path={post.path}
+            language={post.language}
           />
         ))}
 

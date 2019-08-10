@@ -40,7 +40,7 @@ const Post = ({ title, summary, date, path, language }) => (
         margin-bottom: .7rem;
         line-height: 1.4em;
         font-family: 'Libre Caslon Text', serif;
-        font-weight: 400;
+        font-weight: 700;
       }
 
       .info {

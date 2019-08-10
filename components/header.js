@@ -16,7 +16,7 @@ function Header ({ path, pageTitle, ogImage }) {
       <style jsx>
         {`
           header {
-            padding: 1em 0;
+            padding: 1em 0 2em;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -25,7 +25,7 @@ function Header ({ path, pageTitle, ogImage }) {
       </style>
       <style jsx global>
         {`
-          @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text|Open+Sans:300,400,700&display=swap');
+          @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
           
           html {
             margin: 0;

@@ -1,0 +1,27 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-08-10',
+  title: 'Hi there 👋',
+  summary: 'Welcome to my new blog',
+  image: '/static/site-feature.png',
+  language: 'en',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Hey!
+
+This is my first blog post! I'm very excited about this. 🤩
+
+I'm using a [blog starter](https://github.com/zeit/next.js/tree/master/examples/blog-starter) from ZEIT in the front-end.
+
+I will publish posts in English and Portuguese. It can be simple things that I learn, thoughts, or long texts about web development.
+
+I hope you like it.
