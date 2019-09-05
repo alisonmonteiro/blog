@@ -22,7 +22,7 @@ const Post = ({ title, summary, date, path, language }) => (
       }
 
       article + article {
-        margin-top: 48px;
+        margin-top: 3rem;
       }
 
       header {
@@ -37,7 +37,7 @@ const Post = ({ title, summary, date, path, language }) => (
 
       h2 {
         font-size: 28px;
-        margin-bottom: .7rem;
+        margin-bottom: .4rem;
         line-height: 1.4em;
         font-family: 'Libre Caslon Text', serif;
         font-weight: 700;
@@ -58,14 +58,14 @@ const Post = ({ title, summary, date, path, language }) => (
         text-decoration: underline;
       }
 
-      p {
-        font-size: 15px;
-        line-height: 1.7em;
+      .post-summary {
+        font-size: 1rem;
+        line-height: 1.8em;
         color: #4A4A4A;
         font-weight: 300;
       }
 
-      p + p {
+      .post-summary p + .post-summary p {
         margin-top: 1.5em;
       }
 

@@ -63,6 +63,7 @@ function BlogPost ({ path, meta, children, language }) {
         h1 {
           font-size: 2.5rem;
           margin-bottom: .7rem;
+          margin-top: 1rem;
           line-height: 1.4em;
           font-family: 'Libre Caslon Text', serif;
           font-weight: 700;

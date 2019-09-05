@@ -16,10 +16,11 @@ function Header ({ path, pageTitle, ogImage }) {
       <style jsx>
         {`
           header {
-            padding: 1em 0 2em;
+            padding: 1rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            background-color: #F5F5F5;
           }
         `}
       </style>
@@ -75,7 +76,8 @@ function Header ({ path, pageTitle, ogImage }) {
 
           p {
             margin-top: 0;
-            margin-bottom: 2rem;
+            margin-bottom: 2.4rem;
+            line-height: 1.8em;
           }
 
           ul,
@@ -86,7 +88,7 @@ function Header ({ path, pageTitle, ogImage }) {
           }
 
           a {
-            color: #33e;
+            color: #0079FF;
             cursor: pointer;
           }
 
@@ -120,9 +122,14 @@ function Header ({ path, pageTitle, ogImage }) {
 
           code {
             color: #fff;
+          }
+
+          .e-content code {
+            color: #fff;
             font-size: 0.8em;
             padding-right: 0.4em;
             padding-left: 0.4em;
+            background-color: #062742;
           }
 
           .wrap {

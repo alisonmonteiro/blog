@@ -8,9 +8,20 @@ function Layout ({ path, children, pageTitle, ogImage }) {
     <Container>
       <Header path={path} pageTitle={pageTitle} ogImage={ogImage} />
 
-      <main>{children}</main>
+      <main>
+        {children}
 
-      <Footer />
+        <Footer />
+      </main>
+
+      <style jsx>{`
+        main {
+          width: 100%;
+          max-width: 45rem;
+          padding: 1rem 1rem 0;
+          margin: 0 auto;
+        }
+      `}</style>
     </Container>
   )
 }
