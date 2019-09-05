@@ -65,6 +65,7 @@ function Header ({ path, pageTitle, ogImage }) {
           h2 {
             margin-top: 1rem;
             font-size: 1.8rem;
+            margin-bottom: 1.2rem;
           }
 
           h3 {
@@ -74,7 +75,7 @@ function Header ({ path, pageTitle, ogImage }) {
 
           p {
             margin-top: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
           }
 
           ul,
@@ -119,6 +120,9 @@ function Header ({ path, pageTitle, ogImage }) {
 
           code {
             color: #fff;
+            font-size: 0.8em;
+            padding-right: 0.4em;
+            padding-left: 0.4em;
           }
 
           .wrap {
