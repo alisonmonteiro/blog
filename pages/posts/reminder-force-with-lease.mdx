@@ -1,0 +1,23 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-09-05',
+  title: 'Reminder: force with lease',
+  summary: 'This is just a reminder to myself in the future. ¯\\_(ツ)_/¯',
+  image: '/static/site-feature.png',
+  language: 'en',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+According to the Git documentation, the `git push` command "update remote refs along with associated objects". It means that it updates your remote repository based on your local information.
+
+This is just a reminder to myself in the future. Try `git push --force-with-lease` Instead of `git push --force`.
+
+The `git push --force` updates the repository with everything you have locally. **Possibly overwriting** any changes that a team member has pushed in the meantime.
