@@ -1,0 +1,96 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-09-11',
+  title: 'Como fazer um e-mail responsivo + template de exemplo',
+  summary: 'Mesmo com todas as tecnologias que conseguimos usufruir no front-end atualmente, nossos clientes de e-mails são muito limitados em relação a interpretação de código. Por isso, veja algumas dicas para construir um bom template de e-mail marketing.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Trabalhando como desenvolvedor(a) Front-end em uma empresa de pequeno porte, em algum momento você vai se deparar com uma task relacionada a criação de um template de e-mail. Essa pode parecer uma tarefa muito básica, mas ela requer atenção em alguns pontos para que o e-mail chegue na caixa de entrada e com o Front-end fiel ao layout.
+
+Primeiramente é importante identificar qual ferramenta será utilizada para enviar, pois em alguns casos temos ainda mais limitações e em outros, não precisamos nos preocupar sequer com a construção do template em si. Porém, para este post, vamos levar em consideração que você precisa construir o seu template baseado em um layout que um designer fez, exclusivamente para este envio, certo?
+
+## De volta aos anos 90
+
+Mesmo com todas as tecnologias que conseguimos usufruir no front-end atualmente, nossos clientes de e-mails são muito limitados em relação a interpretação de código. Por isso, para ter suportar o máximo de clientes possíveis, nossos e-mails devem ser construídos utilizando tabelas como estrutura. Nada de **Grid Layout ou FlexBox**. Além disso, devemos utilizar 100% do nosso estilo inline (ou o máximo possível).
+
+Isso pode parecer bem estranho, mas esta é a técnica mais utilizada para que todos os clientes/usuários tenham a melhor experiência possível em seus respectivos clientes de e-mail. Veja um exemplo de como seria a estrutura de um e-mail marketing bem básico:
+
+```html
+<table border="0" width="100%" cellpadding="0" cellspacing="0" align="left">
+  <tr>
+    <td style="text-align: center;">
+      <h3 style="color: #000;">Olá,</h3>
+      <p style="color: #000; line-height: 1.7em; margin-bottom: 0;">Obrigado por nos visitar ontem. Como foi sua experiência?</p>
+      <a style="margin-top: 16px; max-width: 230px; color: #FFF; background: #FF5E00; font-size: 16px; font-weight: bold; padding: 16px 60px; text-decoration: none; border-bottom: 2px solid #D04D01; border-radius: 5px;" href="https://www.meusite.com">
+        Avaliar
+      </a>
+    </td>
+  </tr>
+</table>
+```
+
+<div>
+	<script src="https://gist.github.com/alisonmonteiro/dfe55f0ca988ca06af6b69fcc8b0e944.js"></script>
+</div>
+
+Com o estilo sendo 100% inline e a marcação HTML da estrutura precisando ser feita apenas com tabelas, vamos utilizar alguns truques para deixar nosso e-mail responsivo.
+
+## Resets, Media queries e Mobile first
+
+Alguns clientes de e-mail aceitam alguns estilos gerais, mas isso não é regra. É comum termos alguns "resets" de CSS em uma tag `<style>` para tentar deixar o e-mail mais parecido para todos.
+
+Além dos resets, alguns clientes de e-mail também aceitam `@media` queries. Isso é um pouco recente, se considerarmos a evolução dos clientes de e-mail. Veja um exemplo utilizando uma  media query:
+
+```html
+<style type="text/css">
+  body {
+    font-size: 14px;
+  }
+
+  @media only screen and (max-device-width: 480px) {
+    table a {
+      background: #333 !important;
+      border-bottom-color: #CCC !important;
+    }
+  }
+</style>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0" align="left">
+  <tr>
+    <td style="text-align: center;">
+      <h3 style="color: #000;">Olá,</h3>
+      <p style="color: #000; line-height: 1.7em; margin-bottom: 0;">Obrigado por nos visitar ontem. Como foi sua experiência?</p>
+      <a style="display: inline-block; margin-bottom: 22px; margin-top: 16px; max-width: 230px; color: #FFF; background: #FF5E00; font-size: 16px; font-weight: bold; padding: 16px 60px; text-decoration: none; border-bottom: 2px solid #D04D01; border-radius: 5px;" href="https://www.google.com">
+      	Avaliar
+      </a>
+    </td>
+  </tr>
+</table>
+```
+
+Infelizmente, para sobrescrever nossos estilos inline, precisamos utilizar o `!important` em todos os atributos que adicionarmos ao nosso CSS, que é bem comum nesse ambiente de **e-mails marketing**.
+
+### Por quê usar estilo inline, então?
+
+Uma coisa muito interessante de se saber sobre esse resets é que, mesmo que o seu cliente de e-mail suporte estes recursos: ao tentar encaminhar ou responder um e-mail que contenha estes estilos "extra", nesse momento todo esse estilo "extra" é descartado e só os estilos inline são utilizados. Sabendo disso, é importante avaliar seu público alvo e qual versão do seu e-mail pode ser compartilhada tanto no formato desktop quanto no mobile, e a partir disso definir a regra da sua media query.
+
+## Boilerplate
+
+Depois de muito pesquisar a respeito, acabei fazendo uma análise mais detalhada dos e-mails enviados pelo [iFood](https://www.ifood.com.br/), e achei que ele tinha um código muito bem estruturado. 
+
+Acabei montando um modelo baseado no que eles utilizavam na época (mantendo os créditos, assim como eles o faziam), porém com algumas adaptações. Decidi publicar ele em um gist e compartilhar.
+
+[Clique aqui](https://gist.github.com/alisonmonteiro/e758e9472d317eb53e7b3054041bb747) para visualizar o Gist com o template. Agora, nos raros casos que preciso criar um e-mail "do zero", recorro a este template. 
+
+Lembrando que o `max-device-width` utilizando com regra da minha media query, pode ser substituído por qualquer outra regra que faça mais sentido pro seu caso.
