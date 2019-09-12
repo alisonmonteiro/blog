@@ -11,7 +11,7 @@ function Layout ({ path, children, pageTitle, ogImage }) {
       <main>
         {children}
 
-        <Footer />
+        <footer />
       </main>
 
       <style jsx>{`
