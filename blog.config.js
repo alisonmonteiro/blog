@@ -4,7 +4,7 @@ module.exports = {
     author: 'Alison Monteiro',
     image: '/static/site-feature.png',
     description: 'Alison Monteiro Website',
-    siteUrl: 'https://alisonmonteiro.now.sh',
+    siteUrl: 'https://alisonmonteiro.com.br',
     social: {
       twitter: 'alisonmonteir1'
     },
