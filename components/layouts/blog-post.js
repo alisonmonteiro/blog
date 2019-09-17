@@ -124,6 +124,12 @@ function BlogPost ({ origin, path, meta, children, language }) {
 
         .share .button-wapper {
           margin-left: .8rem;
+          cursor: pointer;
+          transition: transform .2s;
+        }
+
+        .share .button-wapper:hover {
+          transform: scale(1.1);
         }
 
         .post-pagination {
