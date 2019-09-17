@@ -12,7 +12,7 @@ function Footer () {
         }
 
         p {
-          margin-top: 2em;
+          margin: 3em 0 1em;
         }
       `}</style>
     </footer>

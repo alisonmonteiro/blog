@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { siteMeta } from '../../blog.config'
 import Layout from './default'
 import SyntaxHighlight from '../syntax-highlight'
+import MainFooter from '../footer'
 import PublishedAt from '../utils/published-at'
 import blogposts from '../../posts/index'
 import NextPrevPost from '../next-prev-post'
@@ -75,6 +76,7 @@ function BlogPost ({ origin, path, meta, children, language }) {
           )}
         </footer>
       </article>
+      <MainFooter />
       <style jsx>{`
         header {
           margin-bottom: 2em;

@@ -1,4 +1,5 @@
 import Layout from './default'
+import Footer from '../footer'
 
 function Page ({ meta, children }) {
   return (
@@ -9,6 +10,7 @@ function Page ({ meta, children }) {
         </header>
         <div>{children}</div>
       </article>
+      <Footer />
       <style jsx>{`
         h1 {
           font-size: 28px;
