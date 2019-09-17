@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { siteMeta } from '../../blog.config'
 import Layout from './default'
 import SyntaxHighlight from '../syntax-highlight'
+import MainFooter from '../footer'
 import PublishedAt from '../utils/published-at'
 import blogposts from '../../posts/index'
 import NextPrevPost from '../next-prev-post'
@@ -75,6 +76,7 @@ function BlogPost ({ origin, path, meta, children, language }) {
           )}
         </footer>
       </article>
+      <MainFooter />
       <style jsx>{`
         header {
           margin-bottom: 2em;
@@ -122,6 +124,12 @@ function BlogPost ({ origin, path, meta, children, language }) {
 
         .share .button-wapper {
           margin-left: .8rem;
+          cursor: pointer;
+          transition: transform .2s;
+        }
+
+        .share .button-wapper:hover {
+          transform: scale(1.1);
         }
 
         .post-pagination {

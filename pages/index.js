@@ -4,6 +4,7 @@ import Link from 'next/link'
 import pagination from 'pagination'
 import Layout from '../components/layouts/default'
 import Post from '../components/blog-index-item'
+import Footer from '../components/footer'
 import blogposts from '../posts/index'
 import { siteMeta } from '../blog.config'
 
@@ -62,6 +63,7 @@ const Blog = ({ router, page = 1 }) => {
           </li>
         )}
       </ul>
+      <Footer />
       <style jsx>{`
         header {
           margin-bottom: 3em;
