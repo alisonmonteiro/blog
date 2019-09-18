@@ -4,7 +4,7 @@ import Footer from '../footer'
 function Page ({ meta, children }) {
   return (
     <Layout pageTitle={meta.title}>
-      <article>
+      <article className="entry-page">
         <header>
           <h1>{meta.title}</h1>
         </header>

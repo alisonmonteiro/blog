@@ -5,12 +5,18 @@ const Title = ({ path }) => (
   <>
     {path === '/' ? (
       <h1>
-        <a href={siteMeta.siteUrl}>{siteMeta.title}</a>
+        <Link href='/'>
+          <a rel='me'>
+            <img width='40' src='/static/profile.png' alt='Profile Picture'/> {siteMeta.title}
+          </a>
+        </Link>
       </h1>
     ) : (
       <p>
         <Link href='/'>
-          <a rel='me'>{siteMeta.title}</a>
+          <a rel='me'>
+            <img width='40' src='/static/profile.png' alt='Profile Picture'/> {siteMeta.title}
+          </a>
         </Link>
       </p>
     )}
@@ -21,7 +27,16 @@ const Title = ({ path }) => (
         line-height: 1rem;
       }
 
+      img {
+        display: block;
+        margin-right: .7rem;
+        border: 2px solid #CCC;
+        border-radius: 100%;
+      }
+
       a {
+        display: flex;
+        align-items: center;
         color: #333;
         text-decoration: none;
       }

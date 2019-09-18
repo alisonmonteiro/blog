@@ -10,17 +10,28 @@ function Header ({ path, pageTitle, ogImage }) {
       <Head title={pageTitle} ogImage={ogImage} />
 
       <header>
-        <Title path={path} />
-        <Nav />
+        <div className="container">
+          <Title path={path} />
+          <Nav />
+        </div>
       </header>
       <style jsx>
         {`
           header {
-            padding: 1rem;
+            padding: .7rem 1rem;
+            margin-bottom: 1rem;
+            background-color: #FFF;
+            box-shadow: 1px 0 6px rgba(0, 0, 0, .1)
+          }
+
+          .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #F5F5F5;
+            width: 100%;
+            max-width: 45rem;
+            padding: 0 1rem;
+            margin: 0 auto;
           }
         `}
       </style>
@@ -76,8 +87,12 @@ function Header ({ path, pageTitle, ogImage }) {
 
           p {
             margin-top: 0;
-            margin-bottom: 2.4rem;
+            margin-bottom: 2.2rem;
             line-height: 1.8em;
+          }
+
+          .entry-page p {
+            margin: 1.4rem 0;
           }
 
           ul,
