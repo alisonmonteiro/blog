@@ -18,7 +18,7 @@ const Nav = () => (
         font-size: 1rem;
         margin-right: 15px;
         transition: all .2s;
-        color: #0079FF;
+        color: #000;
       }
 
       nav a:last-child {
@@ -26,7 +26,7 @@ const Nav = () => (
       }
 
       nav a:hover {
-        color: #000;
+        color: #0079FF;
       }
     `}</style>
   </nav>
