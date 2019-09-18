@@ -18,7 +18,7 @@ function Header ({ path, pageTitle, ogImage }) {
       <style jsx>
         {`
           header {
-            padding: .7rem 1rem;
+            padding: .7rem 0;
             margin-bottom: 1rem;
             background-color: #FFF;
             box-shadow: 1px 0 6px rgba(0, 0, 0, .1)
