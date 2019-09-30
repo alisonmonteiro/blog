@@ -21,7 +21,7 @@ function Header ({ path, pageTitle, ogImage }) {
             padding: .7rem 0;
             margin-bottom: 1rem;
             background-color: #FFF;
-            box-shadow: 1px 0 6px rgba(0, 0, 0, .1)
+            box-shadow: 1px 0 6px rgba(0, 0, 0, .1);
           }
 
           .container {
@@ -32,6 +32,15 @@ function Header ({ path, pageTitle, ogImage }) {
             max-width: 45rem;
             padding: 0 1rem;
             margin: 0 auto;
+          }
+
+          @media (min-width: 768px) {
+            header {
+              position: fixed;
+              width: 100%;
+              top: 0;
+              left: 0;
+            }
           }
         `}
       </style>
