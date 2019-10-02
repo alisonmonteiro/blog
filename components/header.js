@@ -156,6 +156,14 @@ function Header ({ path, pageTitle, ogImage }) {
             background-color: #062742;
           }
 
+          .e-content figure {
+            margin: 24px auto;
+          }
+
+          figure figcaption {
+            font-size: 12px;
+          }
+
           .wrap {
             max-width: 38rem;
             margin-left: auto;
