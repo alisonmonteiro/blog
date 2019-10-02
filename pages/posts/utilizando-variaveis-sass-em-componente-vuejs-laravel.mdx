@@ -1,0 +1,45 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-10-02',
+  title: 'Utilizando variáveis do SASS em um componente VueJS, no Laravel',
+  summary: 'Isso é possível por quê, ao setar o atributo lang="scss", o VueJS considera como SCSS tudo que está dentro da tag style, por isso podemos usufruir de todos os recursos do pré-processador dentro do no nosso componente.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+<figure>
+	<img src="https://images.unsplash.com/photo-1565843714144-d5a3292ae82d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80" alt="Coffee and Code" />
+	<figcaption>Photo by Marc Mintel, via Unsplash</figcaption>
+</figure>
+
+Se você já precisou fazer alguma alteração em um projeto que utiliza Laravel, provavelmente você se deparou com uma serie de componentes utilizando VueJS. Isso por quê, mesmo não definindo qual biblioteca JavaScript ou pré-processador CSS você deve usar em seus projetos, o Laravel deixa uma estrutura pré-definida [utilizando Vue e SASS/SCSS](https://laravel.com/docs/5.8/frontend#introduction).
+
+Para utilizar uma variável definida no seu arquivo `./css/variables.scss` dentro de um componente chamado `./js/File.vue`, por exemplo, você só precisa fazer o seguinte.
+
+File.vue:
+```html
+...
+
+<style lang="scss" scoped>
+	@import '../css/variables';
+
+	p {
+		color: $awesome-color-g200;
+	}
+</style>
+
+...
+```
+
+Isso é possível por quê, ao setar o atributo `lang="scss"`, o VueJS considera como SCSS tudo que está dentro da tag `style`, por isso podemos usufruir de todos os recursos do pré-processador dentro do no nosso componente.
+
+Caso você esteja fazendo algum tipo de refatoração, eu recomendo recriar as [variáveis utilizando apenas CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Using_CSS_custom_properties). Desta forma, você terá acesso direto as suas variáveis, sem necessidade de importação de arquivos.
