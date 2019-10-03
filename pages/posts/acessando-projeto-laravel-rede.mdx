@@ -1,0 +1,44 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-10-03',
+  title: 'Acessando seu projeto Laravel em todos os seus dispositivos',
+  summary: 'Acessar o seu projeto em diversos dispositivos, muitas vezes pode ser necessário, mesmo que você esteja testando em ambiente local. O comando artisan , do Laravel, disponibiliza várias possibilidades, e uma delas é de criar um host na sua rede local.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+<figure>
+	<img src="https://images.unsplash.com/photo-1542382257-80dedb725088?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80" alt="Network" />
+	<figcaption>Photo by Anastasia Dulgier, via Unsplash</figcaption>
+</figure>
+
+Acessar o seu projeto em diversos dispositivos, muitas vezes pode ser necessário, mesmo que você esteja testando em ambiente local. O comando `artisan`, do Laravel, disponibiliza várias possibilidades, e uma delas é de criar um host na sua rede local.
+
+Para utilizar esta função, primeiro, é necessário ficar atento a sua faixa de endereço IP. Caso não seja um problema, você pode inclusive utilizar o seu próprio IP como host. Para ver o seu endereço IP, digite o seguinte comando no seu terminal:
+
+```
+ipconfig getifaddr en1
+```
+
+Isso deve ter lhe retornado algo como `192.168.1.9`. A partir daí, você pode utilizar este mesmo IP ou um outro válido na sua faixa de IP, como por exemplo `192.168.1.37` ou `192.168.1.66`.
+
+Com isto feito, você já pode criar o seu servidor utilizando o comando abaixo:
+
+```
+php artisan serve --host=192.168.1.66
+```
+
+Você pode, inclusive, definir uma porta, assim como já era comum no comando `serve`, utilizando o parâmetro `--port`.
+
+Caso o endereço de IP escolhido esteja indisponível, você receber uma mensagem como esta aqui: `Failed to listen on 192.168.1.1:8000 (reason: Can't assign requested address)`
+
+Mas não tem problema algum, basta escolher um novo endereço IP e continuar com os seus testes.
