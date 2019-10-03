@@ -157,11 +157,13 @@ function Header ({ path, pageTitle, ogImage }) {
           }
 
           .e-content figure {
+            width: 100%;
             margin: 24px auto;
           }
 
           figure figcaption {
             font-size: 12px;
+            text-align: center;
           }
 
           .wrap {
@@ -173,6 +175,18 @@ function Header ({ path, pageTitle, ogImage }) {
           article img {
             max-width: 100%;
             height: auto;
+          }
+
+          @media (min-width: 768px) {
+            .e-content figure {
+              margin: 24px auto;
+              width: 160%;
+              max-width: 90vw;
+              transform: translateX(-50%);
+              left: 50%;
+              position: relative;
+              z-index: -1;
+            }
           }
         `}
       </style>
