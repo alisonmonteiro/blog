@@ -1,0 +1,27 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-10-05',
+  title: 'A pseudo-classe :focus-within do CSS',
+  summary: '`:focus-within` é uma pseudo-classe do CSS que representa um elemento em que um dos seus elementos filho recebe uma correspondência da pseudo-classe `:focus`.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+`:focus-within` é uma pseudo-classe do CSS que representa um elemento em que um dos seus elementos filho recebe uma correspondência da pseudo-classe `:focus`. Caso isso tenha soado estranho, não se preocupe que vendo o funcionamento do exemplo, tudo vai ficar mais claro.
+
+## Exemplo:
+
+<iframe src="https://codepen.io/alisonmonteir0/embed/ExxQpBW?height=265&theme-id=0&default-tab=css" width="100%" height="300" name="codepen" frameborder="0"></iframe>
+
+Depois que eu descobri esse seletor, eu acabei deixando de usar algumas soluções bem desnecessárias com Javascript. Como visto no exemplo, com ele, podemos **alterar o estilo do elemento pai, quando um elemento filho está sob foco**.
+
+É importante entender que esse seletor funciona **principalmente nos browsers modernos**. Browsers como IE ou estão fora do suporte. Veja mais detalhes no [Can I use](https://caniuse.com/#search=focus-within).
