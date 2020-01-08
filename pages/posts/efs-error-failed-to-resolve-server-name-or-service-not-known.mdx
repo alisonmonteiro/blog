@@ -1,0 +1,29 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2019-01-07',
+  title: 'EFS error: Failed to resolve - server  name or service not known',
+  summary: 'Caso você esteja construindo uma infraestrutura na AWS e precisa montar um sistema de arquivos nas suas instâncias EC2 privadas, você pode ter algumas dificuldades. Vamos ver um dos problemas mais comuns em detalhes.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Caso você esteja construindo uma infraestrutura na AWS e precisou montar um sistema de arquivos nas suas instâncias EC2 privadas, você pode ter se deparado com o seguinte erro:
+
+```bash
+Failed to resolve server us-east-1a.fs-xxxxxxxx.efs.us-east-1.amazonaws.com: Name or service not known
+```
+
+Para montar um sistema de arquivos, o assistente de montagem `amazon-efs-utils`, tenta fazer uma conexão através da porta 2049, utilizando o DNS atribuído ao seu File System, e que segue o seguinte formato: **fs-12345678.efs.us-east-2.amazonaws.com.**
+
+Caso a sua VPC não esteja apta a resolver endereços de DNS internamente, sua instância EC2 não conseguirá se conectar ao seus sistema de arquivos EFS. Para habilitar a resolução de DNS na sua VPC, abra o Gerenciador de VPCs e selecione a VPC desejada. Então, vá em Actions, habilite os recursos **DNS resolution** e **DNS hostnames**.
+
+Desta forma, os recursos privados pertencentes a sua VPC poderão se conectar internamente e resolver endereços de DNS.
