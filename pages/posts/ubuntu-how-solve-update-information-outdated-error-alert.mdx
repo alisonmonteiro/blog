@@ -1,0 +1,41 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-02-19',
+  title: 'Ubuntu: How To Solve "The Update Information Is Outdated" error alert?',
+  summary: '"The update information is outdated. This may be caused by network problems or by a repository that is no longer available. Please update manually by selecting ‘Show updates’ from indicator menu, and watching for any failing repositories."',
+  image: '/static/site-feature.png',
+  language: 'en',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+You open your computer to finish a task and see a red triangle at the top-right of your screen with the following message:
+
+> The update information is outdated. This may be caused by network problems or by a repository that is no longer available. Please update manually by selecting ‘Show updates’ from indicator menu, and watching for any failing repositories.
+
+Since this blog is about the experiences that I get and the problems I solve being a Web Developer, let me help you fix one more problem.
+
+## The problem
+
+Well, the reason for the alert shows is described in the error message: "This may be caused by network problems or by a repository that is no longer available". There are no reasons to be worried, though.
+
+## How to solve
+
+While the reason is self-explanatory, the solution suggested by the error message doesn't work as expected. When you select the Show Updates option, it says that the software is up to date.
+
+To be honest, it does work sometimes. However, you can also do it manually if you want. Just open your terminal and run the command below:
+
+```bash
+sudo apt update
+```
+
+This command will download and install an updated list of your packages. To understand the difference between the commands `update` and `upgrade`, have a look at this [Ubuntu man page](https://manpages.ubuntu.com/manpages/xenial/man8/apt-get.8.html).
+
+That's it 👋
