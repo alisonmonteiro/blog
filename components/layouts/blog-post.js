@@ -24,7 +24,7 @@ function BlogPost ({ origin, path, meta, children, language }) {
   const shareUrl = siteMeta.siteUrl + path
 
   return (
-    <Layout pageTitle={meta.title} ogImage={meta.image}>
+    <Layout pageTitle={meta.title} description={meta.summary} ogImage={meta.image}>
       <SyntaxHighlight />
       <article className='h-entry'>
         <header>

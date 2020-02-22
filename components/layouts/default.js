@@ -3,10 +3,10 @@ import Header from '../header'
 import Footer from '../footer'
 import Container from '../container'
 
-function Layout ({ path, children, pageTitle, ogImage }) {
+function Layout ({ path, children, pageTitle, description, ogImage }) {
   return (
     <Container>
-      <Header path={path} pageTitle={pageTitle} ogImage={ogImage} />
+      <Header path={path} pageTitle={pageTitle} ogImage={ogImage} description={description} />
 
       <main>
         {children}

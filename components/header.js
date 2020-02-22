@@ -4,10 +4,10 @@ import Head from './head'
 import Nav from './nav'
 import Title from './title'
 
-function Header ({ path, pageTitle, ogImage }) {
+function Header ({ path, pageTitle, ogImage, description }) {
   return (
     <>
-      <Head title={pageTitle} ogImage={ogImage} />
+      <Head title={pageTitle} ogImage={ogImage} description={description} />
 
       <header>
         <div className="container">
