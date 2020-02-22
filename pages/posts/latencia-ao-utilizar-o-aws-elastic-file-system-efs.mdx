@@ -1,0 +1,43 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-02-21',
+  title: 'Latência ao utilizar o AWS Elastic File System (EFS)',
+  summary: 'O EFS EFS é um dos serviços que a AWS nos oferece, e se destaca por ser, basicamente, um File System NFS na nuvem de baixíssimo custo. Ele foi criado com o intuito de fornecer acesso compartilhado e paralelo para até milhares de instâncias EC2, permitindo que sua aplicação forneça alto nível em taxa de transferência com baixa latência.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Anteriormente, aqui no blog, fiz uma postagem sobre como resolver um erro bem comum na integração de um EFS e instâncias EC2 privadas. Se você ainda não viu, vale a pena conferir. 😜 [Clique aqui](/posts/efs-error-failed-to-resolve-server-name-or-service-not-known). Hoje, também iremos falar do EFS, mas sobre como a utilização desse serviço pode se tornar um problema em alguns contextos. 
+
+## **O que é o EFS?**
+
+EFS é um dos serviços que a AWS nos oferece, e se destaca por ser, basicamente, um File System NFS na nuvem de baixíssimo custo. Ele foi criado com o intuito de fornecer acesso compartilhado e paralelo para até milhares de instâncias EC2, permitindo que sua aplicação forneça alto nível em taxa de transferência com **baixa latência**.
+
+Se eu consigo ter um volume de arquivos compartilhados em múltiplas instâncias EC2, isso quer dizer que eu posso ter um bloco específico de código compartilhado entre todas elas? Bom, não é bem isso. O serviço deixa alguns pontos não tão claros na sua landing page de apresentação, mas se olharmos um pouco mais a fundo a [documentação oficial](https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html), iremos encontrar alguns detalhes bem interessante. Por enquanto, iremos focar em uma bem específica: a latência.
+
+## Latência
+
+Latência, quando falamos em redes de computadores, é o tempo que que leva para os pacotes percorrerem o caminho entre o ponto X e o Y. Quanto mais alta a latência, mas tempo a transmissão demora para ocorrer. 
+
+Como sabemos, na internet cada milésimo de segundo conta. E no EFS o modo de entrega, e a limitação dos recursos são um pouco diferentes do que nós já estamos acostumados em outros serviços da AWS, veja a tabela abaixo:
+
+![Comportamento de intermitência para sistemas de arquivos no EFS](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/66a3a39e-9ea5-4336-b51a-4a94af394832/Untitled.png)
+
+Veja mais detalhes na [documentação sobre perfomance do EFS](https://docs.aws.amazon.com/efs/latest/ug/performance.html).
+
+### Créditos de intermitência acumulada
+
+A AWS usa um sistema de créditos no EFS para determinar quando o File system vai "explodir", que é determinado pelo tamanho dos arquivos, pela quantidade de arquivos, e pelo tempo que esses arquivos ficam "parados" no seu sistema de arquivos. 
+
+Quanto maior o tamanho dos seus arquivos e menos você utilizá-los, mais créditos você terá, e mais rápidos seus arquivos serão entregues as instâncias que compartilham o sistema de arquivos.
+
+Ou seja, é muito mais barato, em latência, ter 2 arquivos de 1 GB cada, do que ter 50 arquivos de 1KB cada. Veja mais detalhes [neste post](https://www.jeffgeerling.com/blog/2018/getting-best-performance-out-amazon-efs).
