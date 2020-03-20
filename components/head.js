@@ -30,6 +30,7 @@ const Head = props => (
       name='description'
       content={props.description || defaultDescription}
     />
+    <meta name="google-site-verification" content="OreevYyoKKiidaXsn_pTGd-rkG4rzabtHIPismxkxPs" />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
     <link rel='icon' href='/static/favicon.ico' />
 
