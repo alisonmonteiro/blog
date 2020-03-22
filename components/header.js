@@ -180,12 +180,6 @@ function Header ({ path, pageTitle, ogImage, description }) {
           @media (min-width: 768px) {
             .e-content figure {
               margin: 24px auto;
-              width: 160%;
-              max-width: 90vw;
-              transform: translateX(-50%);
-              left: 50%;
-              position: relative;
-              z-index: -1;
             }
           }
         `}

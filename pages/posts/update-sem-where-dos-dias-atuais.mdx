@@ -1,0 +1,40 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-03-21',
+  title: 'Este é o "update sem where" dos dias atuais',
+  summary: 'Infelizmente, ainda é muito comum acontecer certos problemas com os ambientes mais importantes de um projeto (leia-se beta, prod), pois mesmo que a equipe tenha boas intenções, de manter o fluxo de desenvolvimento mais dinâmico e otimizado, acaba pecando em alguns detalhes que fazem bastante diferença.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Infelizmente, ainda é muito comum acontecer certos problemas com os ambientes mais importantes de um projeto (leia-se beta, prod), pois mesmo que a equipe tenha boas intenções, de manter o fluxo de desenvolvimento mais dinâmico e otimizado, acaba pecando em alguns detalhes que fazem bastante diferença.
+
+Quem nunca ouviu aquela velha história do(a) estagiário(a) ou da pessoa desenvolvedora menos experiente que acabou fazendo um `UPDATE` sem adicionar uma cláusula `WHERE`? Bom, para quem trabalha com banco de dados relacionais, isso é bem mais comum do que a gente imagina. Nos dias de hoje, com a maioria dos projetos já utilizando um software de controle de versão 🙏, muitas vezes o famoso "**update sem where**" toma novas formas. 
+
+<figure>
+  <img src="https://images.unsplash.com/photo-1521675333836-36e707ac1d20?ixlib=rb-1.2.1&w=1000&q=85&fm=jpg&crop=entropy&cs=srgb" alt="Git Branches" />
+  <figcaption>Photo via Unsplash</figcaption>
+</figure>
+
+Se você ainda não utiliza um software de controle de versão no seu projeto, recomendo fortemente você começar por este [link aqui](https://git-scm.com/book/pt-br/v2).
+
+Há uma certa divergência entre **desenvolvedores de software** em relação a forma de integrar as alterações de uma branch em outra. Uma parte acredita que a melhor forma seja o [rebase, mas outros acreditam que seja o merge](https://www.atlassian.com/git/tutorials/merging-vs-rebasing). Os dois, no fim das contas, resolvem o mesmo problema. 
+
+Independente de qual abordagem você e sua equipe utilizam - e há algumas que utilizam as duas ao mesmo tempo, é importante temtar manter o ambiente o mais controlado e bem definido possível. 
+
+Pessoas desenvolvedoras que estão começando a carreira, tendem a repetir os passos que os seus mentores ou programadores mais experientes fazem ao tentar resolver um problema. Então, se um(a) estagiário(a) pedir ajuda para atualizar a mensagem de um commit, que já está na branch remota, provavelmente você irá atualizar a mensagem e fazer um [`push --force-with-lease`](https://alisonmonteiro.com.br/posts/reminder-force-with-lease). Nesse momento, é importante que a pessoa desenvolvedora entenda exatamente o que foi feito, para que não tente reescrever o histórico de uma branch importante. Pois isso, pode acarretar a atualização de um ambiente crítico, após ativar uma pipeline de deployment, por exemplo.
+
+Utilizei um exemplo que utiliza o merge como forma de integrar as alterações, mas o mesmo se aplica ao rebase.
+
+Para evitar que esse tipo de problema mais sério aconteça, é importante que suas branches críticas sejam protegidas contra merges de pessoas desenvolvedoras menos experientes, ou contra merge requests que não tenham recebido uma quantidade de aprovações suficientes, por exemplo. Esse tipo de permissão é facilmente customizável na maioria das ferramentas de gerenciamento de código GIT.
+
+A ideia de ter branches com permissões restritivas para pessoas desenvolvedoras menos experientes, é a mesma de ter permissões restritivas para os banco de dados dos ambientes mais críticos, onde mesmo que o update sem where aconteça, que seja em um ambiente controlado, assim como um `push —force-with-lease`.
