@@ -23,13 +23,13 @@ Digamos que você está desenvolvendo um **software de distribuição anúncios*
 
 Levando em consideraçao que neste caso, o dado que define um cliente na nossa URL é o parâmetro `client`, como fariamos para capturar o dado identificador na URL abaixo?
 
-```jsx
-https://ad.io/?i=3s7d1&**client**=ejhe7a61c52nr2f
+```js
+https://ad.io/?i=3s7d1&client=ejhe7a61c52nr2f
 ```
 
 Bom, como mencionei acima, temos um construtor que nos ajuda a transformar os dados do `search` em **objeto nativo do JavaScript**. Vejamos o exemplo abaixo:
 
-```jsx
+```js
 const { search } = window.location;
 const params = new URLSearchParams(search);
 const clientId = params.get('client');
