@@ -1,0 +1,62 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-05-20',
+  title: '"In use? No" - Domínios não reconhecidos pelo ACM em conjunto com Elastic Load Balancer.',
+  summary: 'Após solicitar o certificado no **Certificate Manager** e registrar os Record Sets no **Route 53** - tudo que deve ser feito para adicionar um novo domínio com SSL na AWS, algo parecia não estar certo: na lista de domínios, o novo estava sempre como "**In use? No**"',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Este post é sobre um caso de uso bem específico, mas realmente espero que ajude alguém, ou ajude a mim mesmo, em um futuro não tão distante. E, por ser específico, vou entar representar de forma simples o problema e o que me levou a solucionar o mesmo.
+
+## Multiplas aplicações no Elastic Load Balancer?
+
+Bom, em um certo experimento, eu estava tentando compartilhar o mesmo **Elastic Load Balancer** para multiplos domínios que, no fim das contas, levavam para a mesma aplicação. O fluxo era mais ou menos assim:
+
+```md
+shoes.com -------|
+                 |
+cars.com --------|---- Load Balancer ---- EC2 Instances
+                 |
+clothes.com -----|
+```
+
+Todos os domínios já estavam utilizando **certificados SSL,** criados a partir do **Amazon Certificate Manager**. Isso pode parecer um experimento legítimo e tudo funcionou muito bem, até que eu precisei **adicionar um novo domínio** a esta rede que eu havia criado anteriormente.
+
+## Registro de domínio no Route 53
+
+Após solicitar o certificado no **Certificate Manager** e registrar os Record Sets no **Route 53** - tudo que deve ser feito para adicionar um novo domínio com SSL na AWS, algo parecia não estar certo: na lista de domínios, o novo estava sempre como "**In use? No**", como podemos ver na imagem a seguir:
+
+![Certificados no Amazon Certificate Manager](/static/posts/in-use-no-dominios-aws-acm-com-elastic-load-balancer-certificates.png)
+
+Bom, esse simples detalhe me tomou algumas poucas horas de pesquisa. Passei e repassei todos os detalhes da criação do domínio e requisição do certificado para confirmar que tudo estava certo, mas só no momento em que eu **conferi cada passo** que levava o meu domínio à minha instância EC2, que eu descobri o problema.
+
+## A Solução
+
+Em cada Elastic Load Balancer, você provavelmente terá um ou mais "Listeners", que levará ao seu Target Group. Você também pode redirecionar uma porta específica para outro recurso ou até configurar uma resposta fixa. Mas para este exemplo, vamos considerar que você configurou um apontamento para o seu Target Group.
+
+![Configuração do Listener no Elastic Load Balancer](/static/posts/in-use-no-dominios-aws-acm-com-elastic-load-balancer-listener.png)
+
+Cada Listener a ser apontado para portas que necessitam de [conexão segura (HTTS)](https://pt.wikipedia.org/wiki/Lista_de_portas_dos_protocolos_TCP_e_UDP), deverá ter, pelo menos, um certificado SSL configurado como padrão. Caso o seu Load Balancer permita-se receber requisições de multiplos domínios (que é o nosso caso aqui), você precisará habilitar cada novo certificado nas configurações do Listener.
+
+Para habilitar um novo certificado no seu Load Balancer você precisa seguir alguns passos, vamos começar pelo serviço **EC2**:
+
+- Clique em "Load Balancers", no canto inferior esquerdo;
+- Selecione o seu ELB e clique na aba **Listeners**;
+- Então, caso você tenha uma porta com conexão segura configurada, clique em **View/edit certificates**;
+- Clique no ícone **+**, no canto superior esquerdo.
+
+![Configuração do Listener no Elastic Load Balancer](/static/posts/in-use-no-dominios-aws-acm-com-elastic-load-balancer-listener-certificate.png)
+
+Pronto, em alguns minutos o seu **Certificado SSL** ficará com o status "**In use? Yes**"!
+
+Gostou? Então compartilha na suas redes sociais utilizando os links abaixo e até a próxima.
