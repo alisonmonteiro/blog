@@ -1,0 +1,101 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-08-12',
+  title: 'Utilizando o System Manager para armazenar variáveis de ambiente dos seus Containers na AWS',
+  summary: 'Além de conectar diretamente com a sua aplicação utilizando o Software Development Kit (SDK), você também pode capturar parâmetros dentro de outros serviços da AWS como o Elastic Container Service ou ECS.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+
+O Parameter Store é um recurso do **AWS Systems Manager**, serviço da AWS que nos oferece armazenamento tanto de texto simples, quanto de dados secretos, como senhas e chaves privadas. Com isso, podemos transformar variáveis de ambiente do seu projeto em dados armazenados em um ambiente mais controlado, que se comunica com outros serviços, com controle de acesso de usuários, e se preferir, [criptografado](https://aws.amazon.com/pt/kms/). Com o **Parameter Store** você consegue organizar suas variáveis de ambientes de forma hierárquica, baseada nos seus stages e tags.
+
+**Nota:** Se você utiliza o [Terraform](https://www.terraform.io/) como ferramenta para gerenciamento da sua infraestrutura, a [documentação](https://www.terraform.io/docs/providers/aws/r/ssm_parameter.html) mostra como criar este recurso.
+
+### Criando seu Parâmetro
+
+![Criando parametro](/static/posts/criando-parametro-aws-param-store.png)
+
+Ao clicar em "Create Parameter", você deve ser redirecionado para listagem e ver o seu parâmetro criado.
+
+![Lista de parametros](/static/posts/lista-parametros-aws-param-store.png)
+
+## Capturando parâmetros
+
+Para utilizar variáveis armazenadas dentro do SSM Parameter Store, você pode utilizar o SDK da AWS na linguagem de sua preferência.
+
+```jsx
+const ssm = new AWS.SSM()
+ssm.getParametersByPath(params, (err, data) => {
+  if (!err) {
+    return data  
+  }
+
+  console.error(err)
+  return
+})
+```
+
+Para este exemplo, estamos utilizando NodeJS. Veja a lista de ferramentas e SDKs da AWS [neste link](https://aws.amazon.com/tools/).
+
+## Integrando com o ECS
+
+Além de conectar diretamente com a sua aplicação utilizando o Software Development Kit (SDK), você também pode capturar parâmetros dentro de outros serviços da AWS como o Elastic Container Service ou ECS.
+
+Comumente, você deve utilizar **variáveis de ambiente** de texto simples dentro da sua Task Definition. A única coisa que muda é que no lugar de usar algo como
+
+```jsx
+...
+"environment": [
+  {
+    "name": "DATABASE_USERNAME",
+    "value": "main_user"
+  }
+]
+...
+```
+
+A sua Task Definition vai ser algo mais parecido com isto:
+
+```json
+{
+  ...
+  "executionRoleArn": "",
+  "containerDefinitions": [
+    {
+      "name": "",
+      "image": "",
+      ...
+      "environment": [
+        {
+          "name": "DATABASE_USERNAME",
+          "valueFrom": "/stg/database-user"
+        }
+      ],
+      "secrets": [
+        {
+          "name": "DATABASE_PASS",
+          "valueFrom": "/stg/database-password"
+        }
+      ],
+      ...
+    }
+  ]
+  ...
+}
+```
+
+Lembre-se de que sua `executionRoleArn` deve ser configurado para permitir a comunicação entre o ECS e o SSM. Veja na [documentação oficial da AWS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html#task-execution-secrets) como criar tal *Role*.
+
+Pronto, agora você poderá capturar suas variáveis do Parameter Store como variáveis de ambiente na sua aplicação, sem necessidade de utilizar o SDK.
+
+**Referências:** [1](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html), [2](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html), [3](https://aws.amazon.com/pt/systems-manager/features/?nc1=h_ls).
