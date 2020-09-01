@@ -173,10 +173,6 @@ export default () => (
         margin-bottom: 1em;
       }
 
-      pre[class='language-jsx'] {
-        padding-bottom: 0;
-      }
-
       .mdx-marker {
         background-color: rgba(255, 255, 255, 0.1);
         display: block;

@@ -47,7 +47,7 @@ function Header ({ path, pageTitle, ogImage, description }) {
       <style jsx global>
         {`
           @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
-          
+
           html {
             margin: 0;
             box-sizing: border-box;
@@ -151,8 +151,8 @@ function Header ({ path, pageTitle, ogImage, description }) {
           .e-content code {
             color: #fff;
             font-size: 0.8em;
-            padding-right: 0.4em;
-            padding-left: 0.4em;
+            padding-right: 0;
+            padding-left: 0;
             background-color: #062742;
           }
 
