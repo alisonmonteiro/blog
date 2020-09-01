@@ -1,0 +1,39 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-08-31',
+  title: 'List your project\'s git authors via command line',
+  summary: 'If you are working on a project and need to release often, you might need some automated scripts/commands to help you with the day-to-day tasks. This tiny article is about one of these commands: **List your git project contributors.**',
+  image: '/static/site-feature.png',
+  language: 'en',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+If you are working on a project and need to release often, you might need some automated scripts/commands to help you with the day-to-day tasks.
+
+This tiny article is about one of these commands: **List your git project contributors.**
+
+## Give credit to people
+
+When working on an open-source project, it's important to give credit to all the people who contribute to it.
+
+To get the list of authors, we can run:
+
+```jsx
+git log --all --format="%aN" | sort -u
+```
+
+Remember to add `| sort -u` to your log command. If you don't do it, the output will show the same author a bunch of times. Unless you want that, add the sort command to your pipe.
+
+If you want to add the e-mails to the list, you can run:
+
+```jsx
+git log --all --format="%aN <%aE>" | sort -u
+```
