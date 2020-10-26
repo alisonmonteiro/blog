@@ -1,0 +1,77 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-10-26',
+  title: 'Definindo valores padrão para propriedades - Desestruturando Objetos Javascript',
+  summary: 'Existem diversas formas de fazer bom uso dessa feature tão versátil. Porém, é bom tomar um certo cuidado para não abusar das possibilidades e acabar deixando o código mais complexo e difícil de ler do que deveria.',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+<figure>
+    <img src="https://images.unsplash.com/photo-1505238680356-667803448bb6?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&w=800" alt="Code" />
+</figure>
+
+Um dos recursos que eu mais utilizo no ES6+ hoje em dia é [Desestruturação de objetos](https://javascript.info/destructuring-assignment#object-destructuring).
+
+Existem diversas formas de fazer bom uso dessa feature tão versátil. Porém, é bom tomar um certo cuidado para não abusar das possibilidades e acabar deixando o código mais complexo e difícil de ler do que deveria.
+
+Hoje, vamos falar sobre a atribuição de valores padrão na **desestruturação de objetos**, uma das diversas possibilidades dessa feature do JavaScript.
+
+## Desestruturação de Objetos
+
+```jsx
+const person = {
+	name: 'Alison',
+	age: 25,
+	cool: true,
+}
+
+// ...
+
+const { name, age } = person
+console.log(name) // => Alison
+console.log(age)  // => 25
+```
+
+O exemplo acima mostra a definição de um objeto `person` e atribuição dos valores das propriedades desse objeto a duas variáveis distintas.
+
+Uma pergunta que pode vir a mente quando vemos um código como esse é: e se, em códigos similares a este ou até mais complexos, a propriedade utilizada na desestruturação não existir?
+
+```jsx
+const person = {
+	name: 'Alison',
+}
+
+// ...
+
+const { name, cool } = person
+console.log(cool)  // => ?
+```
+
+Bom, nesse caso, o output seria `undefined`, pois estamos criando a variável, mas a desestruturação não conseguiu atribuir nenhum valor a mesma.
+
+Podemos, portanto, atribuir um valor padrão as propriedades que queremos capturar, pro caso de elas não existirem no objeto em questão.
+
+## Valores padrão para propriedades de um objeto
+
+```jsx
+const person = {
+	name: 'Alison',
+}
+
+// ...
+
+const { name, cool = 'Yes' } = person
+console.log(cool)  // => Yes
+```
+
+E aí, curtiu? Espero que sim. Esse tipo de detalhe pode ajudar bastante na legibilidade do nosso código, além de ser muito flexível, já que aceita até **chamada de funções** como valor padrão.
