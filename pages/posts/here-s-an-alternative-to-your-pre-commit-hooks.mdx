@@ -1,0 +1,31 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2020-11-06',
+  title: 'Here\'s an alternative to your pre-commit hooks.',
+  summary: 'Git Hooks are a great way to execute commands based on git triggered events. I\'m sure you already tried to commit something on a codebase, and if your code doesn\'t satisfy a lint or a coding standard, the commit fails.',
+  image: '/static/site-feature.png',
+  language: 'en',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+Git Hooks are a great way to make ~~your teammates angry~~ execute commands based on git triggered events. I'm sure you already tried to commit something on a codebase, and if your code doesn't satisfy a lint or a coding standard, the commit fails.
+
+Build a development workflow isn't easy. We walk through so many issues, right. Working on diverse teams gives you a better point of view on a lot of things. If you're in a situation that a teammate has to switch to another device and didn't finish the changes on their code. Likely they'll try to push it to a temporary working-in-progress branch. If you're using pre-commits, it will not help them at all.
+
+Each programmer should run the code analysis tools the way and when they want. If you like your local app breaking every time you forget a semicolon in a sentence, that's ok. If you choose to run all the code analyses on your text editor, you should be covered as well.
+
+You don't need to check every commit change. What about running a pipeline on your on each merge request? Each of them should run a job to check if everything looks good with your code before going to your live environment.
+
+Let's say I sent some code to my remote repository on the branch called  `branch-123`. After that, I created a new Pull Request to the main branch. On this specific repository, everything merged on the main goes automatically to our integration environment. With that in mind, before merging every pull request, we need to inspect our code in detail. [Accessibility tests](https://www.aslint.org/), code lint, [automated code review](https://www.codacy.com/), and unit tests are just an example of what we can do without human interaction.
+
+There are so many different approaches to this out there. This post gives you a simple example of how you can set up an inclusive environment without losing confidence.
+
+I'm not saying you shouldn't have **pre-commit hooks** in your project - but what about making them optional?
