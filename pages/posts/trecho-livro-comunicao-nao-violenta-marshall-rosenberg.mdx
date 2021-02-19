@@ -1,0 +1,35 @@
+import { withRouter } from 'next/router'
+import BlogPost from '../../components/layouts/blog-post'
+
+export const meta = {
+  published: true,
+  publishedAt: '2021-02-19',
+  title: 'Trecho do livro "Comunicação não-violenta", de Marshall B. Rosenberg',
+  summary: 'Alerta para post não-técnico. "Desde aquele verão de 1943, venho examinando aquelas duas questões que mencionei. O que nos permite, por exemplo, permanecer sintonizados com nossa natureza compassiva até nas piores circunstâncias?"...',
+  image: '/static/site-feature.png',
+  language: 'br',
+}
+
+export default withRouter(({ children, router }) => (
+  <BlogPost language={meta.language} path={router.pathname} meta={meta}>
+    {children}
+  </BlogPost>
+))
+
+**Alerta para post não-técnico. 🙂**
+
+[...]
+
+"Desde aquele verão de 1943, venho examinando aquelas duas questões que mencionei. O que nos permite, por exemplo, permanecer sintonizados com nossa natureza compassiva até nas piores circunstâncias?
+
+Penso em pessoas como Etty HIlesum, que continuou compassiva mesmo quando sujeita às grotescas condições de um campo de concentração alemão. Na época, ela escreveu:
+
+> Não é fácil me amedrontar. Não porque eu seja corajosa, mas por que sei que estou lidando com seres humanos e que preciso tentar ao máximo compreender tudo que qualquer pessoa possa fazer. E foi isso o que realmente importou hoje de manhã - não que um jovem oficial da Gestapo, contrariado, tenha gritado comigo, mas, sim, que eu não tenha me sentido indignada, antes tenha sentido verdadeira compaixão e desejado perguntar: "O senhor teve uma infância muito infeliz? Brigou com a namorada?". É, ele parecia atormentado eobcecado, mal-humorado efraco. Eu gostaria de ter começado a tratá-lo ali mesmo, pois sei que jovens dignos de pena como ele se tornam perigosos tão logo fiquem soltos no mundo. (ETTY HILLESUM, A diary)"
+
+Retirei esse trecho do livro "Comunicação não-violenta", de Marshall B. Rosenberg, pois ele me marcou muito.
+
+Não quero dizer que sou, ou que devemos ser pessoas como a Etty Hillesum, e muito menos que devemos ter reações parecidas com a quela deixou registrada, até porquê estar em um campo de concentração é algo muito extremo. Porém, gostaria de trazer a reflexão para aquelas vezes em que não conseguimos reagir "à altura" a certos estímulos ou situações ruins.
+
+Não só esta, mas algumas outras partes do livro, estão me fazendo entender que muitas vezes, a forma que [não] reagimos a determinadas situações, está ligada a nossa essência e as nossas [crenças internas](https://www.marisapsicologa.com.br/o-que-sao-crencas.html).
+
+Nem todo mundo tem o intuito natural de revidar ofensas, deslealdade, intrigas, desonestidade ou agreções. Se você *não* é uma pessoa que, nessas situações, revida, se vinga ou dá o troco, isso não necessariamente é algo ruim ou demonstra fraqueza.
