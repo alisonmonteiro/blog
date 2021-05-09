@@ -6,19 +6,6 @@ import { siteMeta } from '../blog.config'
 const defaultDescription = siteMeta.description
 const defaultOGURL = siteMeta.siteUrl
 const defaultOGImage = siteMeta.image
-const GATrackingId = siteMeta.GATrackingId
-
-const googleAnalytics = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    window.dataLayer.push(arguments);
-  }
-  gtag('js', new Date());
-  gtag('config', GATrackingId);
-};
 
 const Head = props => (
   <NextHead>
@@ -59,9 +46,6 @@ const Head = props => (
     />
     <meta property='og:image:width' content='1200' />
     <meta property='og:image:height' content='630' />
-
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GATrackingId}`}></script>
-    <script>{googleAnalytics()}</script>
   </NextHead>
 )
 
