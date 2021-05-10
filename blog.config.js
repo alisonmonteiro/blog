@@ -9,6 +9,5 @@ module.exports = {
       twitter: 'alisonmonteir1'
     },
     postsPerPage: 20,
-    GATrackingId: 'UA-68435844-1'
   }
 }
