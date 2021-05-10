@@ -46,8 +46,6 @@ function Header ({ path, pageTitle, ogImage, description }) {
       </style>
       <style jsx global>
         {`
-          @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
-
           html {
             margin: 0;
             box-sizing: border-box;
