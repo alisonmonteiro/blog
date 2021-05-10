@@ -39,7 +39,6 @@ const Post = ({ title, summary, date, path, language }) => (
         font-size: 28px;
         margin-bottom: .4rem;
         line-height: 1.4em;
-        font-family: 'Libre Caslon Text', serif;
         font-weight: 700;
       }
 

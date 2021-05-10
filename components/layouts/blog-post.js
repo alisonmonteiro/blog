@@ -6,7 +6,7 @@ import MainFooter from '../footer'
 import PublishedAt from '../utils/published-at'
 import blogposts from '../../posts/index'
 import NextPrevPost from '../next-prev-post'
-import { 
+import {
   FacebookShareButton,
   FacebookIcon,
   TwitterShareButton,
@@ -95,7 +95,6 @@ function BlogPost ({ origin, path, meta, children, language }) {
           margin-bottom: .7rem;
           margin-top: 1rem;
           line-height: 1.4em;
-          font-family: 'Libre Caslon Text', serif;
           font-weight: 700;
         }
 

@@ -16,7 +16,6 @@ function Page ({ meta, children }) {
           font-size: 28px;
           margin-bottom: .7rem;
           line-height: 1.4em;
-          font-family: 'Libre Caslon Text', serif;
           font-weight: 700;
         }
       `}</style>
