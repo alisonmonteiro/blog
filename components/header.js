@@ -46,7 +46,7 @@ function Header ({ path, pageTitle, ogImage, description }) {
       </style>
       <style jsx global>
         {`
-          @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
+          @import url('https://fonts.googleapis.com/css?family=Roboto+Text:400,700&display=swap');
 
           html {
             margin: 0;
