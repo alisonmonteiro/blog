@@ -33,7 +33,7 @@ const Blog = ({ router, page = 1 }) => {
           <Post
             key={index}
             title={post.title}
-            summary={post.summary}
+            summary={index <= 2 ? post.summary : null}
             date={post.publishedAt}
             path={post.path}
             language={post.language}
